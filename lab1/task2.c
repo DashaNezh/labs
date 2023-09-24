@@ -6,9 +6,7 @@ int main(void){
     scanf("%d",&a);
     printf("input b:\n");
     scanf("%d",&b);
-    printf("input c:\n");
-    scanf("%d",&c);
     c = a + b;
-    printf("Summa =%d\n", c);
+    printf("Summa = %d\n", c);
     return 0;
 }

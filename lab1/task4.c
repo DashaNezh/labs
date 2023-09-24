@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 int main(void){
-    int a,b,c,x;
+    float a,b,c,x;
     printf("input a:\n");
-    scanf("%d",&a);
+    scanf("%f",&a);
     printf("input b:\n");
-    scanf("%d",&b);
+    scanf("%f",&b);
     printf("input c:\n");
-    scanf("%d",&c);
+    scanf("%f",&c);
     x = (c-b)/a;
     printf("x = %.2f\n",x);
     return 0;

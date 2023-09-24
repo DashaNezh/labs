@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
         printf("ERROR");
     }
 
-    while (fgets(line, sizeof(line), file1) != NULL){
+    while (fgets(line, sizeof(line), file1) != NULL && lineCount < 3){
         fputs(line, file2);
         lineCount++;
     }
