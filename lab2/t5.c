@@ -1,67 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX_NAME_LENGTH 100
 
-struct Tovar {
-    char nameOfTovar[100];
+typedef struct {
+    char name[MAX_NAME_LENGTH];
     float price;
-};
+} Product;
 
-void sort_tovar(struct Tovar tovari[], int count_tovarov) {
-    struct Tovar time;
+int comparePrices(const void *a, const void *b) {
+    const Product *productA = (const Product *)a;
+    const Product *productB = (const Product *)b;
 
-    for (int i = 0; i < count_tovarov - 1; i++) {
-        for (int j = 0; j < count_tovarov - i - 1; j++) {
-            if (tovari[j].price > tovari[j + 1].price) {
-                time = tovari[j];
-                tovari[j] = tovari[j + 1];
-                tovari[j + 1] = time;
-            }
-        }
+    if (productA->price < productB->price) {
+        return -1;
+    } else if (productA->price > productB->price) {
+        return 1;
+    } else {
+        return 0;
     }
 }
-
-int main(int argc, char *argv[]) {
-    if (argc < 3) {
-        printf("Not enough arguments\n");
+int main() {
+    char *inputFile = "input.txt";
+    char *outputFile = "output.txt";
+    FILE *file = fopen(inputFile, "r");
+    if (file == NULL) {
+        printf("error\n");
         return 1;
     }
-
-    FILE *input_file = fopen(argv[1], "r");
-    FILE *output_file = fopen(argv[2], "w");
-
-    if (input_file == NULL || output_file == NULL) {
-        printf("Error opening files\n");
+    int size;
+    fscanf(file, "%d", &size);
+    Product *products = (Product *)malloc(size * sizeof(Product));
+    for (int i = 0; i < size; i++) {
+        fscanf(file, "%s %f", products[i].name, &products[i].price);
+    }
+    fclose(file);
+    printf("before:\n");
+    for (int i = 0; i < size; i++) {
+        printf("product: %s, price: %.2f\n", products[i].name, products[i].price);
+    }
+    qsort(products, size, sizeof(Product), comparePrices);
+    printf("after:\n");
+    for (int i = 0; i < size; i++) {
+        printf("product: %s, price: %.2f\n", products[i].name, products[i].price);
+    }
+    FILE *file2 = fopen(outputFile, "w");
+    if (file2 == NULL) {
+        printf("error \n");
         return 1;
     }
-
-    struct Tovar tovari[100];
-    int count_tovarov;
-
-    if (fscanf(input_file, "%d", &count_tovarov) != 1) {
-        printf("Error reading input file\n");
-        fclose(input_file);
-        fclose(output_file);
-        return 1;
+    for (int i = 0; i < size; i++) {
+        fprintf(file, "product: %s, price: %.2f\n", products[i].name, products[i].price);
     }
-
-    for (int i = 0; i < count_tovarov; i++) {
-        if (fscanf(input_file, "%s %f", tovari[i].nameOfTovar, &tovari[i].price) != 2) {
-            printf("Error reading input file\n");
-            fclose(input_file);
-            fclose(output_file);
-            return 1;
-        }
-    }
-
-    fclose(input_file);
-
-    sort_tovar(tovari, count_tovarov);
-
-    for (int i = 0; i < count_tovarov; i++) {
-        fprintf(output_file, "%s %.2f\n", tovari[i].nameOfTovar, tovari[i].price);
-    }
-
-    fclose(output_file);
-
+    fclose(file);
+    printf("sorted written to '%s'.\n", outputFile);
+    free(products);
     return 0;
 }
