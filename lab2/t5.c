@@ -7,7 +7,8 @@ typedef struct {
     float price;
 } Product; //Определяет структуру Product, которая содержит поля name - массив символов для названия продукта и price - цена продукта.
 
-int comparePrices(const void *a, const void *b) {
+int comparePrices(const void *a, const void *b) {//`const` указывает на то, что указатели `a` и `b` являются указателями на константные объекты. 
+    //Это означает, что внутри функции `comparePrices` нельзя изменять значения, на которые указывают эти указатели. 
     const Product *productA = (const Product *)a;
     const Product *productB = (const Product *)b;
 
