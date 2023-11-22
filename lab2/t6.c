@@ -28,7 +28,7 @@ int pop(){ // возвращает элементы из стека
       top = top - 1;
       return data;
    } else {
-      printf("Could not retrieve data, Stack is empty.\n");
+      printf("Could not retrieve data, Stack is empty.\n"); // Не удалось получить данные. Стек пуст.
    }
 }
 
@@ -37,7 +37,7 @@ int push(int data){ //добавляет элементы в стек
       top = top + 1;
       stack[top] = data;
    } else {
-      printf("Could not insert data, Stack is full.\n");
+      printf("Could not insert data, Stack is full.\n"); //Не удалось вставить данные, стек заполнен.
    }
 }
 
