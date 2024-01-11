@@ -1,0 +1,32 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	INPUT             3008
+//	FIRST_NUM         3010
+//	SECOND_NUM        301D
+//	BUBBLESORT        3030
+//	FINALOUT_LOOP     3036
+//	FINALIN_LOOP      303A
+//	AUTOSWAP          3043
+//	SORTED            3047
+//	PRODUCTLOOP       3048
+//	RESULTLOOP        304C
+//	MINUS01           3058
+//	REMAINDER01       305B
+//	MINUS02           3064
+//	REMAINDER2        3067
+//	FIRSTPROMPT       3083
+//	SAMPLE            30B9
+//	PROMPTEXECUTE     30D9
+//	SPACE             30F6
+//	HEXN48            30F8
+//	HEX48             30F9
+//	PLACEHUNDRED      30FA
+//	PLACETEN          30FB
+//	POINTER           30FC
+//	IOCOUNTER         30FD
+//	FIRSTNUM          30FE
+//	SECONDNUM         30FF
+//	THIRDNUM          3100
+
